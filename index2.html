@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        input[type="button"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        #outputBox {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Palindrome Checker</h1>
+    <input id="inputText" type="text" placeholder="Enter a word or phrase">
+    <input type="button" value="Check" onclick="checkPalindrome()">
+    <div id="outputBox"></div>
+</div>
+
+<script>
+    const inputText = document.getElementById("inputText");
+    const outputBox = document.getElementById("outputBox");
+
+    function isPalindrome(str) {
+        const cleaned = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (!cleaned) return null;
+
+        const reversed = cleaned.split('').reverse().join('');
+        return cleaned === reversed;
+    }
+
+    function checkPalindrome() {
+        const val = inputText.value;
+
+        const result = isPalindrome(val);
+        if (result === null) {
+            outputBox.textContent = "Please enter something!";
+            outputBox.style.color = "red";
+        } else if (result) {
+            outputBox.textContent = "Yoo .. It's a Palindrome! 🚀";
+            outputBox.style.color = "green";
+        } else {
+            outputBox.textContent = "Noo .. It's not a Palindrome 😕";
+            outputBox.style.color = "orangered";
+        }
+    }
+
+    // Enter key support
+    inputText.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") checkPalindrome();
+    });
+</script>
+
+</body>
+</html>

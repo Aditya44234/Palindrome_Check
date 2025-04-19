@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <!-- <header>
+        <h1> Palindrome Checker</h1>
+    </header> -->
+
+    <main>
+
+        <div class="heading"><h1>Palindrome Checker</h1></div>
+        
+        <div class="userInput">
+
+            <input class="inp" type="text" placeholder="Enter Word">
+
+            <input class="checkBtn" onclick="check()" type="button" value="Check">
+
+        </div>
+        
+        <h1><span id="outputBox"></span></h1>
+    
+
+    </main>
+
+    
+
+
+    <script>
+
+        let inp=document.querySelector(".inp");
+        let checkBtn=document.querySelector(".checkBtn");
+        let outputBox=document.querySelector("#outputBox");
+
+        function isPalindrome(val){
+            val = val.toLowerCase().replace(/[^a-z0-9]/g, '');
+            if (!val) {
+                outputBox.innerHTML = `Please enter something!`;
+                return false;
+            }
+            let start=0;
+            let end=val.length-1;
+
+            while(start<end){
+                if(val[start]!=val[end]){
+                    return false;
+                }
+                start++;
+                end--;
+            }
+            return true;
+        }
+
+        function check(){
+            let inpVal=inp.value;
+
+            
+            if(isPalindrome(inpVal)){
+                outputBox.innerHTML=`Yoo .. It's a Palindrome🥳`;
+            }else{
+                outputBox.innerHTML=`Noo ..  It's not a Palindrome🙄`;
+            }
+            
+
+        }
+
+        inp.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                check();
+            }
+        });
+
+
+
+        
+
+
+        
+
+    </script>
+</body>
+</html>
+
+
+
+
